@@ -4,12 +4,12 @@ import Link from "next/link";
 import Image from "next/image";
 import { useState, useEffect } from "react";
 import { signIn, signOut, useSession, getProviders } from "next-auth/react";
-import { BiUserCircle } from "react-icons/bi";
 
 const Navbar = () => {
   const { data: session } = useSession();
   const [providers, setProviders] = useState(null);
   const [toggleDropdown, setToggleDropdown] = useState(false);
+  
 
   useEffect(() => {
     async function fetchProviders() {
@@ -51,13 +51,16 @@ const Navbar = () => {
               Sign Out
           </button>
 
-          <Link
-            href={"/profile"}
-            className="text-4xl">
-            <BiUserCircle />
+          <Link href={"/profile"}>
+            <Image
+            src={session.user.image}
+            alt="Profile picture"
+            width={37}
+            height={37}
+            className="rounded-full" />
           </Link>
         </div>) : (
-        <div className="black_btn">
+        <div>
           {providers && Object.values(providers).map((provider) => (
             <button
               key={provider.name}
@@ -75,11 +78,15 @@ const Navbar = () => {
       <div className="sm:hidden flex relative">
       {session?.user ? (
         <div className="">
-          <BiUserCircle
+          <Image
+            src={session.user.image}
+            alt="Profile picture"
+            width={37}
+            height={37}
+            className="rounded-full"
             onClick={() => {
               setToggleDropdown((prev) => !prev);
             }}
-            className="text-4xl red"
           />
           {toggleDropdown && 
           <div className="dropdown">
@@ -111,11 +118,11 @@ const Navbar = () => {
           </div>}
         </div>
       ) : (
-        <div className="black_btn">
+        <div>
           {providers && Object.values(providers).map((provider) => (
             <button
               key={provider.name}
-              onClick={() => {}}
+              onClick={() => {signIn(provider.id)}}
               type="button"
               className="black_btn">
                 Sign In with {provider.name}
