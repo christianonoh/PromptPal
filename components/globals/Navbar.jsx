@@ -39,7 +39,7 @@ const Navbar = () => {
       {session?.user ? (
         <div className="gap-3 flex md:gap-5">
           <Link
-            href={"/create-prompt"}
+            href={"/create-prompt/new"}
             className="black_btn">
             Create Post
           </Link>
