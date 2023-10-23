@@ -9,18 +9,14 @@ const userSchema = new Schema({
   username: {
     type: String,
     required: [true, 'User name is required'],
-    username: {
-      type: String,
-      required: [true, 'User name is required'],
-      minlength: 8,
-      maxlength: 20,
-      match: [/^[a-zA-Z0-9]+$/, 'User name is not valid'],
-      unique: [true, 'User name already exists'],
-    },
-    image: {
-      type: String,
-      // default: '/images/default-profile.png',
-    },
+    minlength: 8,
+    maxlength: 20,
+    match: [/^[a-zA-Z0-9]+$/, 'User name is not valid'],
+    unique: [true, 'User name already exists'],
+  },
+  image: {
+    type: String,
+    // default: '/images/default-profile.png',
   },
 });
 
