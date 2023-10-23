@@ -7,16 +7,16 @@ import { signIn, signOut, useSession, getProviders } from "next-auth/react";
 import { BiUserCircle } from "react-icons/bi";
 
 const Navbar = () => {
-  const isUserLoggedIn = true;
+  const { data: session } = useSession();
   const [providers, setProviders] = useState(null);
   const [toggleDropdown, setToggleDropdown] = useState(false);
 
   useEffect(() => {
-    async function getProviders() {
+    async function fetchProviders() {
       const response = await getProviders();
       setProviders(response);
     }
-    getProviders();
+    fetchProviders();
   }
   , []);
   
@@ -36,7 +36,7 @@ const Navbar = () => {
 
       {/* Desktop menu */}
       <div className="sm:flex hidden">
-      {isUserLoggedIn ? (
+      {session?.user ? (
         <div className="gap-3 flex md:gap-5">
           <Link
             href={"/create-prompt"}
@@ -73,7 +73,7 @@ const Navbar = () => {
 
       {/* Mobile Menu */}
       <div className="sm:hidden flex relative">
-      {isUserLoggedIn ? (
+      {session?.user ? (
         <div className="">
           <BiUserCircle
             onClick={() => {
