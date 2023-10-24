@@ -1,6 +1,7 @@
 import Provider from '@components/Provider';
 import Navbar from '@components/globals/Navbar';
 import '@styles/globals.css';
+import { Poppins } from '@next/font/google';
 
 export const metadata = {
   title: 'PromptPal',
@@ -26,6 +27,12 @@ export const metadata = {
   ],
 }
 
+const mainFont = Poppins({
+  subsets: ['latin'],
+  weight: ['400', '700'],
+  variable: '--font-main-font',
+});
+
 const layout = ({ children }) => {
   return (
     <html lang='en'>
@@ -35,7 +42,7 @@ const layout = ({ children }) => {
             <div className="gradient" />
           </div>
 
-          <main className="app">
+          <main className={`app ${mainFont.variable} font-sans`}>
             <Navbar />
             {children}
           </main>
