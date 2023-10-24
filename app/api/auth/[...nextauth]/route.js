@@ -34,9 +34,16 @@ const handler = NextAuth({
 
         // If the user doesn't exist, create a new user in the database
         if (!userExists) {
+          let username = profile.name.replace(/[^a-zA-Z0-9]/g, '').toLowerCase();
+          let suffix = 1;
+
+          while (await User.findOne({ username })) {
+            username = `${profile.name.replace(/[^a-zA-Z0-9]/g, '').toLowerCase()}_${suffix}`;
+            suffix++;
+          }
           await User.create({
             email: profile.email,
-            username: profile.name.replace(/[^a-zA-Z0-9]/g, '').toLowerCase(),
+            username,
             image: profile.picture,
           });
         }
