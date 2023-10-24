@@ -1,3 +1,4 @@
+import Feed from "@components/Feed"
 
 const Home = () => {
   return (
@@ -12,6 +13,7 @@ const Home = () => {
       <p className="desc text-center">
         PromptPal is an open-source community-driven platform for discovering and sharing AI-generated prompts.
       </p>
+      <Feed />
     </section>
   )
 }
