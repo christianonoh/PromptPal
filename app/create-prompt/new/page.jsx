@@ -7,7 +7,7 @@ import { useState } from "react";
 
 
 const CreatePrompt = () => {
-  const { session } = useSession();
+  const { data: session } = useSession();
   const router = useRouter();
   const [post, setPost] = useState({
     prompt: "",
