@@ -2,10 +2,13 @@
 import { useState } from "react";
 import Image from "next/image";
 import { useSession } from "next-auth/react";
-import { useParams, useRouter } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 
 const PromptCard = ({ prompt, handleTagClick, handleEdit, handleDelete}) => {
   const [copied, setCopied] = useState(false);
+  const { data: session } = useSession();
+  const pathName = usePathname();
+  const router = useRouter();
 
   const handleCopyClick = () => {
     navigator.clipboard.writeText(prompt.prompt);
@@ -59,6 +62,16 @@ const PromptCard = ({ prompt, handleTagClick, handleEdit, handleDelete}) => {
         {new Date(prompt.createdAt).toLocaleString('en-US', { dateStyle: 'long' })}
       </p>
       </div>
+      {session?.user.id === prompt.creator._id && pathName === '/profile' && (
+        <div className="flex flex-center pt-4 gap-6 border-t">
+          <button className="black_btn" onClick={handleEdit}>
+            Edit
+          </button>
+          <button className="outline_btn" onClick={handleDelete}>
+            Delete
+          </button>
+        </div>
+      )}
     </div>
   )
 }
