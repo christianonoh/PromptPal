@@ -62,7 +62,7 @@ This README will guide you through the installation and usage of PromptPal, as w
 
 ## 🚀 Live Demo<a name="liveDemo"></a>
 
-- Check out PromptPal app [here.](https://vecs-school.onrender.com)
+- Check out PromptPal app [here.](https://prompt-pal-umber.vercel.app/)
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
