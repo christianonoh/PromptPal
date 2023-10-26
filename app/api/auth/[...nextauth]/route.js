@@ -42,6 +42,7 @@ const handler = NextAuth({
             suffix++;
           }
           await User.create({
+            name: profile.name.split(' ').slice(0, 2).join(' '),
             email: profile.email,
             username,
             image: profile.picture,
