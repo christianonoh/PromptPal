@@ -21,7 +21,7 @@ const Navbar = () => {
   , []);
   
   return (
-    <nav className="flex-between w-full mb-16 pt-3">
+    <nav className="flex-between w-full relative z-30 max-w-7xl mx-auto py-6 md:px-16 px-6 md:mb-28 mb-16 md:border-b">
       <Link
         href={"/"}
         className="flex gap-2 flex-center">
@@ -99,7 +99,7 @@ const Navbar = () => {
                 Profile
             </Link>
             <Link
-              href="/create-prompt"
+              href="/create-prompt/new"
               className="dropdown_link"
               onClick={() => {
                 setToggleDropdown(false);
@@ -113,7 +113,7 @@ const Navbar = () => {
                 setToggleDropdown(false);
                 signOut();
               }}>
-                Sign Out
+                Log Out
             </button>
           </div>}
         </div>
@@ -125,7 +125,7 @@ const Navbar = () => {
               onClick={() => {signIn(provider.id)}}
               type="button"
               className="black_btn">
-                Sign In with {provider.name}
+                Login with {provider.name}
             </button>
           ))
           }
