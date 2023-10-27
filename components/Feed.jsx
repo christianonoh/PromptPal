@@ -25,20 +25,14 @@ const Feed = () => {
     setSearchText(e.target.value);
   };
 
-  useEffect(() => {
-    const fetchPrompts = async () => {
-      try {
-        const response = await fetch("/api/prompt");
-        if (!response.ok) {
-          throw new Error(`HTTP error! Status: ${response.status}`);
-        }
-        const data = await response.json();
-        setPrompts(data);
-      } catch (error) {
-        console.error("Error fetching prompts:", error);
-      }
-    };
+  const fetchPrompts = async () => {
+    const response = await fetch("/api/prompt");
+    const data = await response.json();
 
+    setPrompts(data);
+  };
+
+  useEffect(() => {
     fetchPrompts();
   }, []);
 
